@@ -27,7 +27,7 @@ whatsappLink: "https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu",
 haftaninSkodasi: {
   model: "Škoda Octavia",
   aciklama: "Sportif tasarım ve güçlü performansıyla öne çıkıyor.",
-  sahip: "Yusuf",
+  sahip: "",
   gorsel: "haftanin-araci.jpg"
 }
 
