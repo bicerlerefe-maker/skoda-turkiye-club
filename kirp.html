@@ -1,1 +1,257 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Haftanın Aracı Fotoğraf Kırpıcı | Škoda Türkiye Club</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"
+  >
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      background: #10151c;
+      color: #f4f6f8;
+    }
+
+    main {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h1 { font-size: 28px; }
+
+    p { color: #c2cbd5; line-height: 1.6; }
+
+    .panel {
+      padding: 20px;
+      background: #1b232e;
+      border: 1px solid #354151;
+      border-radius: 16px;
+    }
+
+    .preview {
+      margin-top: 18px;
+      min-height: 160px;
+      max-height: 60vh;
+      overflow: hidden;
+      background: #0b1016;
+      border-radius: 10px;
+    }
+
+    .preview img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button, select, .file-label {
+      padding: 12px 15px;
+      border: 1px solid #536174;
+      border-radius: 9px;
+      background: #283443;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover, .file-label:hover { background: #3b4b60; }
+
+    .primary {
+      background: #16804a;
+      border-color: #16804a;
+    }
+
+    .primary:hover { background: #11683b; }
+
+    input[type="file"] { display: none; }
+
+    .status { margin-top: 14px; }
+
+    .note { font-size: 13px; }
+
+    a { color: #a9d7ff; }
+  </style>
+</head>
+
+<body>
+<main>
+  <h1>Haftanın Aracı Fotoğraf Kırpıcı</h1>
+  <p>
+    Fotoğrafını seç, fareyle kırpma alanını ayarla ve
+    sonucu haftanin-araci.jpg adıyla indir.
+  </p>
+
+  <section class="panel">
+    <label class="file-label" for="fileInput">
+      Bilgisayardan fotoğraf seç
+    </label>
+    <input id="fileInput" type="file" accept="image/*">
+
+    <div class="preview">
+      <img id="photo" alt="Kırpılacak fotoğraf" hidden>
+    </div>
+
+    <div class="controls">
+      <button id="zoomIn" type="button">＋ Yakınlaştır</button>
+      <button id="zoomOut" type="button">－ Uzaklaştır</button>
+      <button id="rotate" type="button">↻ 90° döndür</button>
+
+      <select id="ratio" aria-label="Kırpma oranı">
+        <option value="free">Serbest kırpma</option>
+        <option value="1.7777778">Yatay 16:9</option>
+        <option value="1.5">Yatay 3:2</option>
+        <option value="1">Kare 1:1</option>
+      </select>
+
+      <button id="reset" type="button">Sıfırla</button>
+      <button id="download" class="primary" type="button" disabled>
+        Kırp ve fotoğrafı indir
+      </button>
+    </div>
+
+    <p id="status" class="status" role="status">
+      Başlamak için bir fotoğraf seç.
+    </p>
+
+    <p class="note">
+      İpucu: Kırpma çerçevesini fareyle taşıyabilir, köşelerinden
+      boyutlandırabilirsin. İndirilen fotoğrafı GitHub'daki mevcut
+      haftanin-araci.jpg dosyasının yerine yükle.
+    </p>
+  </section>
+
+  <p><a href="./index.html">← Škoda Türkiye Club ana sayfasına dön</a></p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<script>
+(function () {
+  const input = document.getElementById("fileInput");
+  const photo = document.getElementById("photo");
+  const status = document.getElementById("status");
+  const download = document.getElementById("download");
+  const ratio = document.getElementById("ratio");
+
+  let cropper = null;
+  let objectUrl = null;
+
+  input.addEventListener("change", function () {
+    const file = input.files && input.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      status.textContent = "Lütfen bir fotoğraf dosyası seç.";
+      return;
+    }
+
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    if (cropper) {
+      cropper.destroy();
+      cropper = null;
+    }
+
+    objectUrl = URL.createObjectURL(file);
+    photo.hidden = false;
+    photo.onload = function () {
+      if (cropper) cropper.destroy();
+
+      cropper = new Cropper(photo, {
+        viewMode: 1,
+        responsive: true,
+        autoCropArea: 0.85,
+        background: false,
+        aspectRatio: ratio.value === "free"
+          ? NaN
+          : Number(ratio.value)
+      });
+
+      download.disabled = false;
+      status.textContent = "Kırpma alanını fareyle ayarla.";
+    };
+    photo.onerror = function () {
+      status.textContent = "Fotoğraf açılamadı. Başka bir dosya dene.";
+    };
+    photo.src = objectUrl;
+  });
+
+  document.getElementById("zoomIn").addEventListener("click", function () {
+    if (cropper) cropper.zoom(0.1);
+  });
+
+  document.getElementById("zoomOut").addEventListener("click", function () {
+    if (cropper) cropper.zoom(-0.1);
+  });
+
+  document.getElementById("rotate").addEventListener("click", function () {
+    if (cropper) cropper.rotate(90);
+  });
+
+  document.getElementById("reset").addEventListener("click", function () {
+    if (cropper) cropper.reset();
+  });
+
+  ratio.addEventListener("change", function () {
+    if (cropper) {
+      cropper.setAspectRatio(
+        ratio.value === "free" ? NaN : Number(ratio.value)
+      );
+    }
+  });
+
+  download.addEventListener("click", function () {
+    if (!cropper) return;
+
+    const canvas = cropper.getCroppedCanvas({
+      maxWidth: 1800,
+      maxHeight: 1200,
+      imageSmoothingEnabled: true,
+      imageSmoothingQuality: "high"
+    });
+
+    if (!canvas) {
+      status.textContent = "Fotoğraf hazırlanamadı. Tekrar dene.";
+      return;
+    }
+
+    canvas.toBlob(function (blob) {
+      if (!blob) {
+        status.textContent = "Fotoğraf oluşturulamadı. Tekrar dene.";
+        return;
+      }
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "haftanin-araci.jpg";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setTimeout(function () {
+        URL.revokeObjectURL(url);
+      }, 1000);
+
+      status.textContent =
+        "Fotoğraf indirildi. Şimdi GitHub'a yükleyip mevcut dosyanın yerine koy.";
+    }, "image/jpeg", 0.92);
+  });
+})();
+</script>
+</body>
+</html>
+
