@@ -17,7 +17,7 @@ window.SITE_AYARLARI = {
   /* 2) INSTAGRAM ADRESİ
      Şu an BOŞ. Hesabın hazır olunca tam adresi yaz.
      Örnek biçim:  "https://www.instagram.com/skodistan" */
-  instagramLink: "",
+  instagramLink: "https://www.instagram.com/skodistan",
 
   /* 3) HAFTANIN ŠKODA'SI
      Her hafta buradaki bilgileri güncelleyebilirsin.
