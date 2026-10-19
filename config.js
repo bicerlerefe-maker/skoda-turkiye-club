@@ -24,11 +24,11 @@ whatsappLink: "https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu",
      Fotoğraf eklemek istersen resmi "gorseller" adında bir klasöre
      koy ve dosya adını yaz (örnek: "gorseller/octavia.jpg").
      Fotoğraf yoksa "" bırak, site şık bir yer tutucu gösterir. */
-  haftaninSkodasi: {
-    model: "Bu hafta henüz seçilmedi",
-    aciklama: "Bir üyemizin Škoda'sını burada tanıtacağız. Aracını göndermek için WhatsApp grubuna katıl.",
-    sahip: "",
-    gorsel: ""
-  }
+haftaninSkodasi: {
+  model: "Škoda Octavia",
+  aciklama: "Sportif tasarım ve güçlü performansıyla öne çıkıyor.",
+  sahip: "Yusuf",
+  gorsel: "haftanin-araci.jpg"
+}
 
 };
