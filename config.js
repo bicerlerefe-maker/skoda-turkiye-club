@@ -22,7 +22,7 @@ whatsappLink: "https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu",
   /* 3) HAFTANIN ŠKODA'SI
      Her hafta buradaki bilgileri güncelleyebilirsin.
      Fotoğraf eklemek istersen resmi "gorseller" adında bir klasöre
-     koy ve dosya adını yaz (örnek: "gorseller/octavia.jpg").
+     koy ve dosya adını yaz (örnek: "").
      Fotoğraf yoksa "" bırak, site şık bir yer tutucu gösterir. */
 haftaninSkodasi: {
   model: "Škoda Octavia",
