@@ -12,7 +12,7 @@ window.SITE_AYARLARI = {
      Örnek biçim:  "https://chat.whatsapp.com/XXXXXXXXXXXX"
      Boş kaldığı sürece sitedeki butonlar "Yakında" olarak görünür
      ve hiçbir yere gitmez. */
-  whatsappLink: "[https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu](https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu)",
+whatsappLink: "https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu",
 
   /* 2) INSTAGRAM ADRESİ
      Şu an BOŞ. Hesabın hazır olunca tam adresi yaz.
