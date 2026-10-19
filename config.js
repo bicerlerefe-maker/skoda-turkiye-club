@@ -12,11 +12,11 @@ window.SITE_AYARLARI = {
      Örnek biçim:  "https://chat.whatsapp.com/XXXXXXXXXXXX"
      Boş kaldığı sürece sitedeki butonlar "Yakında" olarak görünür
      ve hiçbir yere gitmez. */
-  whatsappLink: "",
+  whatsappLink: "[https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu](https://chat.whatsapp.com/ESSULPxgsZA29ILe84ICVu)",
 
   /* 2) INSTAGRAM ADRESİ
      Şu an BOŞ. Hesabın hazır olunca tam adresi yaz.
-     Örnek biçim:  "https://www.instagram.com/hesapadin" */
+     Örnek biçim:  "https://www.instagram.com/skodistan" */
   instagramLink: "",
 
   /* 3) HAFTANIN ŠKODA'SI
