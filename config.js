@@ -1,0 +1,34 @@
+/* ==========================================================
+   ŞKODA TÜRKİYE CLUB – AYAR DOSYASI
+   Siteyi değiştirmek istediğinde SADECE bu dosyayı düzenle.
+   Tırnak işaretlerinin ("...") içindeki yazıları değiştir,
+   tırnakları ve virgülleri silme.
+   ========================================================== */
+
+window.SITE_AYARLARI = {
+
+  /* 1) WHATSAPP DAVET BAĞLANTISI
+     Şu an BOŞ. Bağlantını alınca iki tırnağın arasına yapıştır.
+     Örnek biçim:  "https://chat.whatsapp.com/XXXXXXXXXXXX"
+     Boş kaldığı sürece sitedeki butonlar "Yakında" olarak görünür
+     ve hiçbir yere gitmez. */
+  whatsappLink: "",
+
+  /* 2) INSTAGRAM ADRESİ
+     Şu an BOŞ. Hesabın hazır olunca tam adresi yaz.
+     Örnek biçim:  "https://www.instagram.com/hesapadin" */
+  instagramLink: "",
+
+  /* 3) HAFTANIN ŠKODA'SI
+     Her hafta buradaki bilgileri güncelleyebilirsin.
+     Fotoğraf eklemek istersen resmi "gorseller" adında bir klasöre
+     koy ve dosya adını yaz (örnek: "gorseller/octavia.jpg").
+     Fotoğraf yoksa "" bırak, site şık bir yer tutucu gösterir. */
+  haftaninSkodasi: {
+    model: "Bu hafta henüz seçilmedi",
+    aciklama: "Bir üyemizin Škoda'sını burada tanıtacağız. Aracını göndermek için WhatsApp grubuna katıl.",
+    sahip: "",
+    gorsel: ""
+  }
+
+};
